@@ -86,7 +86,7 @@ def search_venues():
   # seach for Hop should return "The Musical Hop".
   # search for "Music" should return "The Musical Hop" and "Park Square Live Music & Coffee"
   search_term = request.form.get('search_term', '')
-  result = db.session.query(Venue).filter(Venue.name.ilike('%' + search_term + '%')).all()
+  result = Venue.query.filter(Venue.name.ilike(f'%{search_term}%'))
   response = {
        "count": result.count(),
 	     "data": result
